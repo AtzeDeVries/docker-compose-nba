@@ -4,6 +4,12 @@ Compose Repostitory of NBA cluster
 
 In this repository are some Docker Compose files for running a NBA cluster in docker containers. This will install `api`, `etl` , `elasticsearch`, `kibana`.
 
+You can use `docker-compose-with-minio.yaml` to install it with Minio S3 service (https://minio.io)
+
+You can use `docker-compose-with-grafana.yml` to install it with Grafana (https://grafana.net/)
+
+You can use `docker-compose-all.yaml` to add Minio and Grafana.
+
 ### Quickstart
 To start a cluster without configuring run
 ```
@@ -84,4 +90,4 @@ Grafana is a tool like kibana. You can configure
 ```
 GF_SECURITY_ADMIN_PASSWORD: jan
 ```
-This is the password for gafana. Kibana is reachable on port 3000
+This is the password for gafana. Grafana is reachable on port 3000
