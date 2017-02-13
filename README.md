@@ -63,7 +63,7 @@ This is where your elasticseach data should sit. In this case it is `/es-data`.
 ```
 image: atzedevries/docker-nba-etl:2.05-53-g08338884
 ```
-The version of the ETL module. Available tags are found here https://hub.docker.com/r/atzedevries/docker-nba-api/tags/
+The version of the ETL module. Available tags are found here https://hub.docker.com/r/atzedevries/docker-nba-etl/tags/
 
 ```
 - /data/nba-import/data:/payload/data
