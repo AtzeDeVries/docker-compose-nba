@@ -33,6 +33,8 @@ The api will be available on port 8080, kibana on 5601. To run the import run
 ```
 docker exec my-cluster_etl_1 sh/import-all
 ```
+Where `my-cluster` this the cluster name and `sh/import-all` is the command you want to run. Run
+`docker exec my-cluster_etl_1 ls sh/` to show all available commands.
 
 ### Configuring your cluster
 You can edit the yaml file. When after you made changes you should run this command again
