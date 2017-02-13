@@ -23,7 +23,7 @@ services:
 
   etl:
     image: atzedevries/docker-nba-etl:2.05-53-g08338884
-    command: while true ; do echo "This is the etl module. Run docker exec <container-name> sh/import-all" ;sleep 60000 ; done
+    command: sh -c 'while true ; do echo "This is the etl module. Run docker exec <container-name> sh/import-all"  ;sleep 60000 ; done'
     volumes:
       - /data/nba-import/data:/payload/data
       - /data/nba-import/log:/payload/software/log
