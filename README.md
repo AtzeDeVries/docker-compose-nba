@@ -31,7 +31,7 @@ Where `-f` links to your docker compose yaml and `-p` is your cluster name and `
 
 The api will be available on port 8080, kibana on 5601. To run the import run
 ```
-docker exec my-cluster_etl_1 import-all
+docker exec my-cluster_etl_1 ./import-all
 ```
 Where `my-cluster` this the cluster name and `import-all` is the command you want to run. Run
 `docker exec my-cluster_etl_1 ls` to show all available commands.
