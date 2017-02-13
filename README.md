@@ -91,6 +91,23 @@ docker inspect <your cluster name>_minio_1 -f '{{range .NetworkSettings.Networks
 ```
 Minio is reachable on port 9000
 
+To inject the repository configuration, to the following `PUT`
+```
+{
+  "type": "s3",
+  "settings": {
+    "bucket" : "elasticsearch", #or bucketname
+    "region" : "us-east-1",
+    "endpoint" : "http://172.17.0.3:9000", #local ip of minio
+    "access_key" : "STN9JN0EVM86SUBOFLXO",
+    "secret_key" : "CxoEvB5Ti+YVZz6WKuKXb401GiqfNJFRqm/FnLG9",
+    "protocol" : "http"
+  }
+}
+
+```
+
+
 Grafana is a tool like kibana. You can configure
 ```
 GF_SECURITY_ADMIN_PASSWORD: jan
