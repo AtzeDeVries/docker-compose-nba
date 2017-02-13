@@ -29,7 +29,10 @@ docker-compose -f docker-compose-all.yaml -p my-cluster down
 ```
 Where `-f` links to your docker compose yaml and `-p` is your cluster name and `-d` is to run in the background.
 
-The api will be available on port 8080, kibana on 5601.
+The api will be available on port 8080, kibana on 5601. To run the import run
+```
+docker exec my-cluster_etl_1 sh/import-all
+```
 
 ### Configuring your cluster
 You can edit the yaml file. When after you made changes you should run this command again
