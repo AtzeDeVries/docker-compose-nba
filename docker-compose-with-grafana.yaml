@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+  api:
+    image: atzedevries/docker-nba-api:2.05-44-g84ab21e3
+    ports:
+      - "8080:8080"
+    links:
+      - elasticsearch:es
+
+  elasticsearch:
+    image: atzedevries/elasticsearch-s3:5.1.2
+    environment:
+      #should be half of system mem
+      #xms must be same as xmx
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    volumes:
+      - /es-data:/usr/share/elasticsearch/data
+    command: >
+      elasticsearch
+      -Ecluster.name="nba-cluster"
+      -Enetwork.host="_site_"
+
+  etl:
+    image: atzedevries/docker-nba-etl:2.05-53-g08338884
+    command: while true ; do echo "This is the etl module. Run docker exec <container-name> sh/import-all" ;sleep 60000 ; done
+    volumes:
+      - /data/nba-import/data:/payload/data
+      - /data/nba-import/log:/payload/software/log
+    links:
+      - elasticsearch:es
+
+  kibana:
+    image: kibana:5.1.2
+    links:
+      - elasticsearch:elasticsearch
+    ports:
+      - "5601:5601"
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    environment:
+      # default username is admin
+      GF_SECURITY_ADMIN_PASSWORD: jan
+    links:
+      - elasticsearch:elasticsearch

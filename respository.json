@@ -1,0 +1,13 @@
+PUT _snapshot/minio
+{
+  "type": "s3",
+  "settings": {
+    "bucket" : "elasticsearch", #or bucketname
+    "region" : "us-east-1",
+    "endpoint" : "http://172.17.0.3:9000", #local ip of minio (can also be ip of host system
+    "access_key" : "STN9JN0EVM86SUBOFLXO",
+    "secret_key" : "CxoEvB5Ti+YVZz6WKuKXb401GiqfNJFRqm/FnLG9",
+    "protocol" : "http"
+  }
+}
+
