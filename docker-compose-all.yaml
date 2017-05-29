@@ -2,11 +2,23 @@ version: '2'
 
 services:
   api:
-    image: atzedevries/docker-nba-api:2.05-44-g84ab21e3
+    image: atzedevries/docker-nba-api:V2.4
     ports:
       - "8080:8080"
     links:
       - elasticsearch:es
+    volumes:
+      - /etc/nba/dwca:/etc/nba/dwca
+
+  api-prev:
+    image: atzedevries/docker-nba-api:V2.3
+    ports:
+      - "8081:8080"
+    links:
+      - elasticsearch:es
+    volumes:
+      - /etc/nba/dwca:/etc/nba/dwca
+
 
   elasticsearch:
     image: atzedevries/elasticsearch-s3:5.1.2
@@ -22,13 +34,13 @@ services:
       -Enetwork.host="_site_"
 
   etl:
-    image: atzedevries/docker-nba-etl:2.05-53-g08338884
-    command: sh -c 'while true ; do echo "This is the etl module. Run docker exec <container-name> sh/import-all"  ;sleep 60000 ; done'
+    image: atzedevries/docker-nba-etl:V2.4
     volumes:
       - /data/nba-import/data:/payload/data
       - /data/nba-import/log:/payload/software/log
     links:
       - elasticsearch:es
+    restart: "no"
 
   kibana:
     image: kibana:5.1.2
